@@ -4,7 +4,7 @@
 <template>
     <nav class="navbar">
         <div class="nav-brand">
-            <NuxtLink to="/">MyDevBlog</NuxtLink>
+            <NuxtLink to="/">Blog</NuxtLink>
         </div>
     
         <ul class="nav-links">

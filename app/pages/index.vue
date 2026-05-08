@@ -4,9 +4,7 @@
     const config = useRuntimeConfig();
     const strapiUrl = config.public.strapiUrl;
 
-    const { data: postsResponse } = await useFetch(`${strapiUrl}/api/blog-posts?populate=*`, {
-        method: 'POST'
-    })
+    const { data: postsResponse, pending: postsPending, error: postsError } = await useFetch(`${strapiUrl}/api/blog-posts?populate=*`)
     const { data: categoriesResponse } = await useFetch(`${strapiUrl}/api/categories`)
     const selectedCategory = ref('')
 
@@ -28,7 +26,7 @@
 
     const getAuthorName = (post) => {
         const data = getPostData(post)  
-        const authorData = data.Author?.data?.attributes || data.Author
+        const authorData = data.author?.data?.attributes || data.author
         return authorData?.Name || 'Unknown Author'
     }
 
@@ -38,15 +36,14 @@
 
     const getCategoryNameForPost = (post) => {
         const data = getPostData(post)
-        const categoryData = data.Category?.data?.attributes || data.Category
+        const categoryData = data.category?.data?.attributes || data.category
         return categoryData?.Name || 'Uncategorized'
     }
 </script>
 
 <template>
     <div class="main">
-        <header>
-            <h1>Blog</h1>
+        <header>            
             <div class="filter-selection">
                 <label for="category-select">Filter by Category:</label>
                 <select id="category-select" v-model="selectedCategory">
