@@ -63,15 +63,11 @@
                 <p>No blog posts found for this category.</p>
             </div>
 
-            <article 
+            <BlogCard 
                 v-for="post in filteredPosts" 
                 :key="post.id" 
-                class="blog-card">
-                    <h2>{{ getPostData(post).Title }}</h2>
-                    <p class="author">By: {{ getAuthorName(post) }}</p>
-                    <p class="snippet">{{ getPostData(post).Snippet }}</p>
-                    <NuxtLink :to="`/${getPostData(post).Identifier}`" class="read-more">Read More</NuxtLink>
-            </article>
+                :post="post" 
+            />
         </section>
     </div>
 </template>
